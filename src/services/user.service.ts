@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import UserModel from '../models/user.model';
-import IUser from '../interfaces/index';
+import { IUser } from '../interfaces/index';
 
 const { JWT_SECRET = 'secret' } = process.env;
 
@@ -21,7 +21,7 @@ export default class UserService {
   private generateToken = (user: IUser): string => {
     const payload = { id: user.id, username: user.username };
     const token = jwt.sign(payload, JWT_SECRET);
-    
+
     return token;
   };
 }

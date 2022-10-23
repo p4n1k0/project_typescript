@@ -7,7 +7,7 @@ export interface Product extends IProduct {
   id: number;
 }
 
-interface IUser {
+export interface IUser {
   id?: number;
   username: string;
   classe: string;
@@ -15,4 +15,8 @@ interface IUser {
   password: string;
 }
 
-export default IUser;
+export interface IOrder {
+  id: number;
+  userId: number;
+  productsIds: number[];
+}

@@ -8,7 +8,7 @@ export default class ProductModel {
     this.connection = connection;
   }
 
-  create = async (product: IProduct): Promise<Product> => {
+  public async create(product: IProduct): Promise<Product> {
     const query = 'INSERT INTO Trybesmith.Products (name, amount) VALUES (?, ?)';
     const [data] = await this.connection.execute<ResultSetHeader>(
       query,
@@ -18,7 +18,7 @@ export default class ProductModel {
     const { insertId: id } = data;
 
     return { id, ...product };
-  };
+  }
 
   public async getAll(): Promise<Product[]> {
     const result = await this.connection

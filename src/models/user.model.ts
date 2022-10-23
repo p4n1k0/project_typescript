@@ -1,5 +1,5 @@
 import { Pool, ResultSetHeader } from 'mysql2/promise';
-import IUser from '../interfaces/index';
+import { IUser } from '../interfaces/index';
 import connection from './connection';
 
 export default class UserModel {
