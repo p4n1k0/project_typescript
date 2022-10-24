@@ -3,20 +3,34 @@ export interface IProduct {
   amount: string;
 }
 
+export interface IOrder extends Product {
+  userId: number;
+  productsIds: number[];
+}
+
 export interface Product extends IProduct {
   id: number;
 }
 
-export interface IUser {
-  id?: number;
+export interface UserCredentials {
   username: string;
-  classe: string;
-  level: number;
   password: string;
 }
 
-export interface IOrder {
-  id: number;
-  userId: number;
-  productsIds: number[];
+export interface IUser extends UserCredentials {
+  classe: string;
+  level: number;
+}
+
+export interface User extends IUser {
+  id?: number;
+}
+
+export interface Error {
+  type: number | null;
+  message: string | Token;
+}
+
+export interface Token extends Error {
+  token: string;
 }

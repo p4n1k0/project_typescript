@@ -11,4 +11,15 @@ export default class UsersController {
 
     res.status(statusCodes.CREATED).json({ token });
   };
+
+  public login = async (req: Request, res: Response) => {
+    const payload = req.body;
+    const { type, message } = await this.service.login(payload);
+
+    if (type) {
+      return res.status(type).json({ message });
+    }
+    
+    res.status(statusCodes.OK).json({ token: message });
+  };
 }
