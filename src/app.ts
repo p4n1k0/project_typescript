@@ -10,10 +10,10 @@ app.use(express.json());
 
 app.use('/products', productRouter);
 
-app.use('/users', userRouter);
+app.use(userRouter);
 
-app.use('/login', loginRouter);
+app.use(loginRouter);
 
-app.use('/orders', orderRouter);
+app.use(orderRouter);
 
 export default app;

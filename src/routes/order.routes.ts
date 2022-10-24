@@ -5,6 +5,6 @@ const router = express.Router();
 
 const controller = new OrderController();
 
-router.get('/', controller.getAll);
+router.get('/orders', controller.getAll);
 
 export default router;
