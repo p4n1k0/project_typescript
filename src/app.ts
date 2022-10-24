@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use('/products', productRouter);
 
-app.use(userRouter);
+app.use('/users', userRouter);
 
 app.use(loginRouter);
 
