@@ -3,13 +3,13 @@ export interface IProduct {
   amount: string;
 }
 
+export interface Product extends IProduct {
+  id: number;
+}
+
 export interface IOrder extends Product {
   userId: number;
   productsIds: number[];
-}
-
-export interface Product extends IProduct {
-  id: number;
 }
 
 export interface UserCredentials {
@@ -32,5 +32,15 @@ export interface Error {
 }
 
 export interface Token extends Error {
-  token: string;
+  token: {
+    id: number;
+    username: string;
+    iat: number;
+  }
+}
+
+export interface Order extends Token {
+  body: { 
+    productsIds: number[]
+  }  
 }
