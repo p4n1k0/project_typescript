@@ -1,7 +1,5 @@
 # Boas vindas ao repositório do projeto em Typescript!
 
-Para rodar o projeto, atente-se a cada passo descrito a seguir, e se tiver qualquer dúvida, me comunique.
-
 Aqui você vai encontrar os detalhes de como foi estruturar o desenvolvimento do meu projeto a partir deste repositório.
 
 # Entregáveis
