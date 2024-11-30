@@ -79,19 +79,11 @@ Aqui você vai encontrar os detalhes de como foi estruturar o desenvolvimento do
 </details>
 
 <details>
-  <summary><strong>🎲 Diagrama Entidade Relacionamento do projeto</strong></summary><br />
-
-  O banco de dados do projeto segue a estrutura abaixo:
-
-  <img src="images/diagram-der.png" width="200px" >
-</details>
-
-<details>
   <summary><strong>‼️ Antes de começar a desenvolver</strong></summary><br />
 
   1. Clone o repositório
 
-  - `git clone https://github.com/p4n'k0/project_typescript.git`.
+  - `git clone https://github.com/p4n1k0/project_typescript.git`.
   - Entre na pasta do repositório que você acabou de clonar:
     - `cd project_typescript`
 
