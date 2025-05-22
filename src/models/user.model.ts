@@ -18,13 +18,11 @@ export default class UserModel {
   }
 
   public async getAll(): Promise<User[]> {
-    const result = await this.connection.execute<User[] & ResultSetHeader>(
+    const [data] = await this.connection.execute<User[] & ResultSetHeader>(
       'SELECT * FROM Trybesmith.Users',
     );
 
-    const [rows] = result;
-
-    return rows;
+    return data;
   }
 
   public async login(data: UserCredentials): Promise<User | undefined> {
@@ -33,9 +31,7 @@ export default class UserModel {
       u.username === data.username && u.password === data.password
     ));
 
-    if (!user) {
-      return user;
-    }
+    if (!user) return user;
 
     const payload = { id: user.id, username: user.username };
     

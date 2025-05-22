@@ -10,9 +10,10 @@ export default class OrderModel {
 
   public async getAll(): Promise<IOrder[]> {
     const [orders] = await this.connection.execute<RowDataPacket[]>(
-      `SELECT table1.id, table1.userId, JSON_ARRAYAGG(table2.id) AS productsIds 
-      FROM Trybesmith.Orders AS table1 INNER JOIN Trybesmith.Products AS table2 
-      ON table1.id = table2.orderId GROUP BY table1.id`,
+      `SELECT o.id, o.userId, JSON_ARRAYAGG(p.id) as productsIds FROM Trybesmith.Orders o
+      JOIN Trybesmith.Products p
+      ON o.id = p.orderId
+      GROUP BY o.id`,
     );
 
     return orders as IOrder[];
@@ -20,15 +21,14 @@ export default class OrderModel {
 
   public async create(body: Order) {
     const [order] = await this.connection.execute<ResultSetHeader>(
-      'INSERT INTO Trybesmith.Orders(userId) VALUES(?)',
+      'INSERT INTO Trybesmith.Orders (userId) VALUES(?)',
       [body.token.id],
     );
 
-    body.body.productsIds.forEach(async (productId) => {
-      await this.connection.execute(
-        'UPDATE Trybesmith.Products SET orderId = ? WHERE id = ?',
+    await Promise.all(body.body.productsIds.map(async (productId) => {
+      await this.connection.execute(`UPDATE Trybesmith.Products SET orderId = ? WHERE id = ?`,
         [order.insertId, productId],
       );
-    });
+    }));
   }
 }
