@@ -1,14 +1,16 @@
-import sinon from 'sinon';
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../src/app';
 import productMock from './mocks/product.mock';
 import connection from '../../src/models/connection';
+import recreateDatabase from '../recreateDatabase';
 
 chai.use(chaiHttp);
 
 describe('1 - Test endpoint /products', function () {
-    beforeEach(function () { sinon.restore(); });
+    beforeEach(async () => {
+        await recreateDatabase(connection);
+    });
 
     it('ao receber name e amount de produtos validos, cadastra produto', async function () {
         const data = await chai.request(app).post('/products').send(productMock.validProduct);
@@ -64,5 +66,5 @@ describe('1 - Test endpoint /products', function () {
         expect(data.status).to.be.deep.eq(422);
         expect(data.body).to.be.deep.eq({ message: '"amount" length must be at least 3 characters long' });
     });
-    
+
 });
